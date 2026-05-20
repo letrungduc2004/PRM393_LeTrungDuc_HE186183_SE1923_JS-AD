@@ -1,9 +1,12 @@
-import 'package:demo/Entity/Product.dart';
+import 'package:demo/entity/Product.dart';
+import 'package:demo/repository/ProductDAO.dart';
 import 'dart:io';
+
+ProductDAO dao = ProductDAO();
 
 void main() {
   int choice = 0;
-  while (choice != 8) {
+  while (choice != 9) {
     print("\n===== MENU =====");
     print("1. Thêm sản phẩm");
     print("2. Xem sản phẩm");
@@ -12,7 +15,8 @@ void main() {
     print("5. Tìm kiếm sản phẩm");
     print("6. Sắp xếp tăng dần theo giá");
     print("7. Sắp xếp giảm dần theo giá");
-    print("8. Thoát");
+    print("8. Tăng giá lên 10%");
+    print("9. Thoát");
     stdout.write("Nhập lựa chọn của bạn: ");
 
     String? input = stdin.readLineSync();
@@ -26,7 +30,7 @@ void main() {
         break;
 
       case 2:
-        Product.viewProduct();
+        dao.viewProduct();
         break;
 
       case 3:
@@ -42,16 +46,20 @@ void main() {
         break;
 
       case 6:
-        Product.sortByPriceAsc();
+        dao.sortByPriceAsc();
         print("Sản phẩm đã được sắp xếp tăng dần theo giá");
         break;
 
       case 7:
-        Product.sortByPriceDesc();
+        dao.sortByPriceDesc();
         print("Sản phẩm đã được sắp xếp giảm dần theo giá");
         break;
 
       case 8:
+        increasePriceFunction();
+        break;
+
+      case 9:
         print("Thoát chương trình...");
         break;
 
@@ -69,9 +77,9 @@ void addFunction() {
   stdout.write("Nhập giá sản phẩm: ");
   double price = double.tryParse(stdin.readLineSync() ?? "0") ?? 0;
 
-  Product.addProduct(
+  dao.add(
     Product(
-      id: Product.products.length + 1,
+      id: ProductDAO.products.length + 1,
       name: name,
       image: image,
       price: price,
@@ -84,7 +92,7 @@ void updateFunction() {
   stdout.write("Nhập ID sản phẩm cần cập nhật: ");
   int id = int.tryParse(stdin.readLineSync() ?? "0") ?? 0;
   try {
-    Product.findById(id);
+    dao.findById(id);
     stdout.write("Nhập tên mới (bỏ trống nếu không đổi): ");
     String name = stdin.readLineSync() ?? "";
     stdout.write("Nhập ảnh mới (bỏ trống nếu không đổi): ");
@@ -92,7 +100,7 @@ void updateFunction() {
     stdout.write("Nhập giá mới (bỏ trống nếu không đổi): ");
     String priceInput = stdin.readLineSync() ?? "";
 
-    Product.updateProduct(
+    dao.updateProduct(
       id,
       name: name.isNotEmpty ? name : null,
       image: image.isNotEmpty ? image : null,
@@ -108,7 +116,7 @@ void deleteFunction() {
   stdout.write("Nhập ID sản phẩm cần xóa: ");
   int id = int.tryParse(stdin.readLineSync() ?? "0") ?? 0;
   try {
-    Product.deleteProduct(id);
+    dao.deleteProduct(id);
     print("Đã xóa sản phẩm!");
   } catch (e) {
     print("Không tìm thấy sản phẩm với ID $id");
@@ -118,7 +126,7 @@ void deleteFunction() {
 void searchFunction() {
   stdout.write("Nhập tên sản phẩm cần tìm: ");
   String keyword = stdin.readLineSync() ?? "";
-  var result = Product.searchByName(keyword);
+  var result = dao.searchByName(keyword);
   if (result.isEmpty) {
     print("Không tìm thấy sản phẩm nào!");
   } else {
@@ -129,4 +137,13 @@ void searchFunction() {
       );
     });
   }
+}
+
+void increasePriceFunction() {
+  dao.increasePrice10Percent();
+
+  print("Đã tăng giá tất cả sản phẩm thêm 10%");
+  print("Danh sách sản phẩm sau khi cập nhật:");
+
+  dao.viewProduct();
 }
