@@ -1,50 +1,36 @@
-import '../models/movie.dart';
-import '../models/trailer.dart';
+import '../models/product.dart';
 
-final List<Movie> movies = [
-  Movie(
+final List<Product> products = [
+  Product(
     id: 1,
-    title: 'Dune: Part Two',
-    posterUrl:
-        'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1200',
-    rating: 8.6,
-    genres: ['Sci-Fi', 'Adventure', 'Drama'],
-    overview:
-        'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.',
-    trailers: const [
-      Trailer(title: 'Official Trailer #1'),
-      Trailer(title: 'Official Trailer #2'),
-      Trailer(title: 'IMAX Sneak Peek'),
-    ],
+    name: 'Sony Alpha a7 III',
+    imageUrl: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1200',
+    price: 1999.99,
+    category: 'Electronics',
+    description: 'Full-frame mirrorless interchangeable-lens camera with 24.2 MP back-illuminated sensor.',
   ),
-  Movie(
+  Product(
     id: 2,
-    title: 'Deadpool & Wolverine',
-    posterUrl:
-        'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200',
-    rating: 8.3,
-    genres: ['Action', 'Comedy'],
-    overview:
-        'Deadpool teams up with Wolverine in a chaotic multiverse adventure packed with action and humor.',
-    trailers: const [
-      Trailer(title: 'Main Trailer'),
-      Trailer(title: 'Behind The Scenes'),
-      Trailer(title: 'Final Trailer'),
-    ],
+    name: 'Nike Air Max 270',
+    imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200',
+    price: 150.0,
+    category: 'Shoes',
+    description: 'Men\'s running shoes with maximum cushioning and breathability.',
   ),
-  Movie(
+  Product(
     id: 3,
-    title: 'Interstellar',
-    posterUrl:
-        'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1200',
-    rating: 8.7,
-    genres: ['Sci-Fi', 'Adventure', 'Mystery'],
-    overview:
-        'A group of explorers travel through a wormhole in space in an attempt to ensure humanity’s survival.',
-    trailers: const [
-      Trailer(title: 'Official Trailer'),
-      Trailer(title: 'Launch Sequence'),
-      Trailer(title: 'Behind The Music'),
-    ],
+    name: 'Apple MacBook Pro M3',
+    imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200',
+    price: 2499.0,
+    category: 'Electronics',
+    description: '16-inch liquid retina XDR display, M3 Max chip, 32GB unified memory.',
+  ),
+  Product(
+    id: 4,
+    name: 'Classic Leather Jacket',
+    imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=1200',
+    price: 299.99,
+    category: 'Clothing',
+    description: 'Premium genuine leather jacket with classic biker styling and metallic zippers.',
   ),
 ];
